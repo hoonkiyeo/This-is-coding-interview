@@ -1,18 +1,18 @@
-import sys
 
-N,M,K = map(int, sys.stdin.readline().split()) # M <= 10,000
-num_list = list(map(int, sys.stdin.readline().split()))
-
+N, M, K = map(int, input().split())
+num_list = list(map(int, input().split()))
 num_list.sort()
-sum = 0
+
 cnt = 0
+tot = 0
 
 for i in range(M):
     if cnt == K:
-        sum += num_list[-2]
+        tot += num_list[-2]
         cnt = 0
-        continue
-    sum += num_list[-1]
-    cnt += 1
+    else:
+        tot += num_list[-1]
+        cnt += 1
+print(tot)
 
-print(sum)
+#Time complexity = O(M)
