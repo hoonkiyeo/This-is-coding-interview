@@ -1,25 +1,37 @@
 import sys
 import time
 
-n = int(sys.stdin.readline())
-move = input().split()
-x,y = 1,1 #start coordinates
+n = int(input())
+steps = list(input().split())
+x,y = 1,1
 
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
 
-for d in move:
-    if d == "L":
-        y -= 1
-    elif d == "R":
-        y += 1
-    elif d == "U":
+def range_check(x,y,n):
+    if x < 1:
+        x += 1
+    elif x > n:
         x -= 1
-    elif d == "D":
-        x += 1
-    #exceptions
-    if y < 1 or y > n:
+    elif y < 1:
         y += 1
-        continue
-    if x < 1 or x > n:
-        x += 1
-        continue
-print(x,y, end = " ")
+    elif y > n:
+        y -= 1
+    return x, y
+
+for step in steps:
+    x, y = range_check(x,y,n)
+    if step == 'L':
+        x += dx[0]
+        y += dy[0]
+    elif step == 'R':
+        x += dx[1]
+        y += dy[1]
+    elif step == 'U':
+        x += dx[2]
+        y += dx[2]
+    elif step == 'D':
+        x += dx[3]
+        y += dy[3]
+
+print(x,y)
